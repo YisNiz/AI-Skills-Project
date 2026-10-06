@@ -179,6 +179,42 @@ Handles Skill-related IPC operations, including listing installed Skills and ins
 
 Loads the Skills when the application starts.
 
+## Example Skill
+
+The following example demonstrates how a Skill is structured.
+
+Skills are stored in:
+
+    C:\Users\<username>\.file-browser-agent\skills
+
+Each Skill has its own folder containing a SKILL.md file.
+
+Example:
+
+    C:\Users\<username>\.file-browser-agent\skills\
+    └── hello-skill\
+        └── SKILL.md
+
+Example SKILL.md:
+
+    ---
+    name: hello-skill
+    description: Use when the user asks to say hello
+    ---
+
+    Start your answer with "Skill activated!"
+
+When the application starts, it loads the available Skills from this directory.
+
+The AI receives only the Skill name and description initially.
+
+When a Skill is relevant to the user's request, the AI calls the
+`activate_skill` tool. The tool retrieves the full instructions from
+the corresponding SKILL.md file and returns them to the AI.
+
+This allows Skills to provide reusable instructions without including
+their full content in the initial prompt.
+
 ## Project Goal
 
 The goal of this project is to demonstrate how an AI agent can extend its behavior dynamically using reusable Skills.
